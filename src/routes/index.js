@@ -1,6 +1,7 @@
 import {Navigate, useRoutes} from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import {ListPodcast} from "../page/list-podcast/ListPodcast";
+import {DetailPodcast} from "../page/detail-podcast/DetailPodcast";
 
 export default function Router() {
   return useRoutes([
@@ -9,14 +10,14 @@ export default function Router() {
       element: (
         <>
           <MainLayout />
-          <ListPodcast />
         </>
       ),
       children: [
+        { path: '/', element: <ListPodcast /> },
         {
           path: 'podcast',
           children: [
-            { path: ':podcastId', element: <div>podcastId</div> },
+            { path: ':podcastId', element: <DetailPodcast /> },
             { path: ':podcastId/episode/:episodeId', element: <div>episodeId</div> },
           ]
         },

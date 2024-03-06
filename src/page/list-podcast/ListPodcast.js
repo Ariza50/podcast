@@ -1,8 +1,9 @@
-import Page from "../../components/Page";
-import {Container, Grid} from "@mui/material";
+import Page from "../../components/infrastructure/Page";
+import {Grid} from "@mui/material";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "../../redux/store";
 import {getPodcastList} from "../../redux/slices/podcast";
+import {PodcastCard} from "../../components/PodcastCard";
 
 export const ListPodcast = () => {
   const dispatch = useDispatch();
@@ -14,20 +15,11 @@ export const ListPodcast = () => {
 
   return (
     <Page title="Podcast: Listado">
-      <Container>
-        Listado de PodCasts.
         <Grid container>
           {
-            podcastList.map((pod, idx) => {
-              return (
-                <Grid item key={idx}>
-                  {pod.title.label}
-                </Grid>
-              )
-            })
+            podcastList.map((podcast, idx) => (<PodcastCard key={idx} podcast={podcast} />))
           }
         </Grid>
-      </Container>
     </Page>
   )
 }
