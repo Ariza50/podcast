@@ -1,16 +1,13 @@
 import './App.css';
 import Router from "./routes";
-import {BrowserRouter} from "react-router-dom";
-import NotistackProvider from "./components/NotistackProvider";
+import NotistackProvider from "./components/infrastructure/NotistackProvider";
 
 
 function App() {
   return (
-    <BrowserRouter>
-      <NotistackProvider>
-        <Router />
-      </NotistackProvider>
-    </BrowserRouter>
+    <NotistackProvider>
+      <Router />
+    </NotistackProvider>
   );
 }
 

@@ -1,8 +1,10 @@
 import {Outlet} from "react-router-dom";
 import {Box, CircularProgress, Container, Divider, Grid, Typography} from "@mui/material";
+import {useSelector} from "../redux/store";
 
 export default function MainLayout() {
-  const [loading, setLoading] = [false];
+  const { isLoading } = useSelector((state) => state.podcast);
+
   return (
     <Container>
       <Box sx={{ my: 4 }}>
@@ -11,7 +13,7 @@ export default function MainLayout() {
             Podcaster
           </Typography>
           {
-            loading && (
+            isLoading && (
               <CircularProgress/>
             )
           }
