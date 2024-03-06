@@ -110,7 +110,7 @@ const podcasts = [
 
 jest.mock('../../redux/store')
 
-describe('ListPodcast', () => {
+describe('Render: ListPodcast', () => {
 
   beforeEach(() => {
     useSelector.mockImplementation(callback => (callback({podcast: {podcastList: podcasts, isLoading: true}})))
@@ -118,14 +118,13 @@ describe('ListPodcast', () => {
   })
 
   test('Render: renders <ListPodcast/>', async () => {
-
     render(
       <Provider store={store}>
         <ListPodcast/>
       </Provider>
     )
 
-
+    expect(screen.getAllByPlaceholderText('Filter podcasts...')).toHaveLength(1)
     expect(screen.getAllByTestId('cardLink')).toHaveLength(4)
   })
 
