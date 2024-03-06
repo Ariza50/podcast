@@ -1,12 +1,16 @@
 import {Navigate, useRoutes} from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
+import {ListPodcast} from "../page/list-podcast/ListPodcast";
 
 export default function Router() {
   return useRoutes([
     {
       path: '/',
       element: (
-        <MainLayout />
+        <>
+          <MainLayout />
+          <ListPodcast />
+        </>
       ),
       children: [
         {
