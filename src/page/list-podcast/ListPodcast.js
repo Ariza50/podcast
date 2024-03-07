@@ -23,7 +23,7 @@ export const ListPodcast = () => {
     if (value === '') {
       setFilteredPodcastList(podcastList);
     } else {
-      setFilteredPodcastList(podcastList.filter(podcast => podcast['im:name'].label.toLowerCase().includes(value.toLowerCase())));
+      setFilteredPodcastList(podcastList.filter(podcast => podcast['im:artist'].label.toLowerCase().includes(value.toLowerCase()) || podcast['im:name'].label.toLowerCase().includes(value.toLowerCase())));
     }
   }
 
