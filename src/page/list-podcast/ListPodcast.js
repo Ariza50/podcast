@@ -1,22 +1,18 @@
 import Page from "../../components/infrastructure/Page";
 import {Grid} from "@mui/material";
 import {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "../../redux/store";
-import {getPodcastList} from "../../redux/slices/podcast";
 import {PodcastCard} from "../../components/PodcastCard";
 import {PodcastFilter} from "../../components/PodcastFilter";
+import {useGetListPodcastQuery} from "../../redux/apiPodcast";
 
 export const ListPodcast = () => {
-  const dispatch = useDispatch();
-  const { podcastList } = useSelector((state) => state.podcast);
-  const [filteredPodcastList, setFilteredPodcastList] = useState(podcastList);
+  const { data: podcastList } = useGetListPodcastQuery();
+  const [filteredPodcastList, setFilteredPodcastList] = useState([]);
 
   useEffect(() => {
-    dispatch(getPodcastList());
-  }, [dispatch]);
-
-  useEffect(() => {
-    setFilteredPodcastList(podcastList)
+    if (podcastList) {
+      setFilteredPodcastList(podcastList)
+    }
   }, [podcastList]);
 
   const onFilter = (value) => {
@@ -25,6 +21,10 @@ export const ListPodcast = () => {
     } else {
       setFilteredPodcastList(podcastList.filter(podcast => podcast['im:artist'].label.toLowerCase().includes(value.toLowerCase()) || podcast['im:name'].label.toLowerCase().includes(value.toLowerCase())));
     }
+  }
+
+  if (!podcastList) {
+    return null;
   }
 
   return (

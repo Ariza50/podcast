@@ -1,9 +1,9 @@
 import {Outlet} from "react-router-dom";
 import {Box, CircularProgress, Container, Divider, Grid, Typography} from "@mui/material";
-import {useSelector} from "../redux/store";
+import {useGetListPodcastQuery} from "../redux/apiPodcast";
 
 export default function MainLayout() {
-  const { isLoading } = useSelector((state) => state.podcast);
+  const { isLoading } = useGetListPodcastQuery();
 
   return (
     <Container>
