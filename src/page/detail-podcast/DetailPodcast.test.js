@@ -27,6 +27,7 @@ describe('Render: <DetailPodcast />', () => {
             feedUrl: 'https://example.com/feed1.xml',
             releaseDate: '2023-03-06T00:00:00-07:00',
             trackTimeMillis: 12114000,
+            trackCount: 3,
           },
           {
             collectionName: 'The Joe Rogan Experience',
