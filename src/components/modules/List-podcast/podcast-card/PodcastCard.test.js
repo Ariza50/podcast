@@ -2,7 +2,7 @@ import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import {PodcastCard} from "./PodcastCard";
-import {trimLabel} from "./utils/format";
+import {trimLabel} from "../../../utils/format";
 
 const mockedUsedNavigate = jest.fn();
 

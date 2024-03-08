@@ -3,6 +3,13 @@ import MainLayout from "./MainLayout";
 import configureMockStore from 'redux-mock-store';
 import {Provider} from "react-redux";
 
+const mockedUsedNavigate = jest.fn();
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockedUsedNavigate,
+}));
+
 test('Render: renders <MainLayout/> without loading', () => {
   jest.mock('axios')
 

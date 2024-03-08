@@ -3,8 +3,8 @@ import {Grid} from "@mui/material";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "../../redux/store";
 import {getPodcastList} from "../../redux/slices/podcast";
-import {PodcastCard} from "../../components/PodcastCard";
-import {PodcastFilter} from "../../components/PodcastFilter";
+import {PodcastCard} from "../../components/modules/List-podcast/podcast-card/PodcastCard";
+import {PodcastFilter} from "../../components/modules/List-podcast/podcast-filter/PodcastFilter";
 
 export const ListPodcast = () => {
   const dispatch = useDispatch();
