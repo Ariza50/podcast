@@ -14,7 +14,7 @@ const podcastPersistConfig = {
   key: 'podcast',
   storage,
   keyPrefix: 'redux-',
-  whitelist: ['podcastList']
+  whitelist: ['podcastList', 'podcast', 'podcastListExpiresAt']
 };
 
 const rootReducer = combineReducers({

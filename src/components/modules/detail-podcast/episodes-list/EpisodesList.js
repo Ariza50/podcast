@@ -1,5 +1,5 @@
 import {Card, Grid, Table, TableBody, TableCell, TableHead, TableRow} from "@mui/material";
-import {format, intervalToDuration} from "date-fns";
+import {format} from "date-fns";
 import {useNavigate} from "react-router-dom";
 import {duration} from "../../../utils/format";
 
