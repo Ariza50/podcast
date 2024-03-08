@@ -1,7 +1,15 @@
 import {Card, Divider, Grid, Typography} from "@mui/material";
 import {trimLabel} from "../../../utils/format";
+import {useNavigate, useParams} from "react-router-dom";
 
 export const PodcastBanner = ({collectionName, artworkUrl600: image, artistName, feedUrl}) => {
+  const navigate = useNavigate();
+  const { podcastId } = useParams();
+
+  const handleClick = () => {
+    navigate(`/podcast/${podcastId}`);
+  }
+
   return (
     <Grid sx={{padding: 2}}>
       <Card
@@ -14,7 +22,7 @@ export const PodcastBanner = ({collectionName, artworkUrl600: image, artistName,
       >
         <Grid p={2}>
           <Grid container flexDirection="column" justifyContent="center" alignItems="center" mb={2}>
-            <Grid item>
+            <Grid item data-testid='bannerLink' onClick={handleClick} sx={{ cursor: 'pointer' }}>
               <img
                 alt={collectionName}
                 style={{ width: 150, height: 150, borderRadius: '5%'}}
@@ -26,7 +34,7 @@ export const PodcastBanner = ({collectionName, artworkUrl600: image, artistName,
               <Divider />
             </Grid>
           </Grid>
-          <Grid item>
+          <Grid item onClick={handleClick} sx={{ cursor: 'pointer' }}>
             <Typography><strong>{trimLabel(collectionName, 22)}</strong></Typography>
             <Typography mb={2} fontStyle="italic" color="gray">by {trimLabel(artistName, 20)}</Typography>
             <Divider />
