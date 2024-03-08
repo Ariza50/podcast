@@ -1,12 +1,12 @@
 import {createSlice} from '@reduxjs/toolkit';
 import axiosInstance from "../../config/axios";
 import * as dateFns from "date-fns";
-import {format} from "date-fns";
 import {store} from "../store";
 
 const initialState = {
   isLoading: false,
   podcastList: [],
+  podcastListExpiresAt: null,
   podcast: [],
 };
 
@@ -25,22 +25,22 @@ const slice = createSlice({
       state.error = action.payload;
     },
     getPodcastsListSuccess(state, action) {
+      const newExpiresAt = dateFns.addDays(new Date(), 1);
       state.isLoading = false;
       state.podcastList = action.payload;
+      state.podcastListExpiresAt = newExpiresAt;
     },
     getPodcastsDetailSuccess(state, action) {
       state.isLoading = false;
       const index = state.podcast.findIndex(podcast => podcast.podcastId === action.payload.podcastId);
       const newExpiresAt = dateFns.addDays(new Date(), 1);
       if (index === -1) {
-        console.log('Not Found', format((newExpiresAt), 'yyyy-MM-dd HH:mm:ss'))
         state.podcast.push({
           podcastId: action.payload.podcastId,
           details: action.payload.response,
           expiresAt: newExpiresAt
         });
       } else {
-        console.log('found', format((newExpiresAt), 'yyyy-MM-dd HH:mm:ss'))
         state.podcast[index].details = action.payload.response;
         state.podcast[index].expiresAt = newExpiresAt
       }
@@ -54,6 +54,13 @@ export function getPodcastList() {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
+      const myStore = store.getState();
+
+      if (dateFns.isBefore(new Date(), myStore.podcast.podcastListExpiresAt)) {
+        dispatch(slice.actions.endLoading());
+        return;
+      }
+
       const response = await axiosInstance.get('https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json')
       dispatch(slice.actions.getPodcastsListSuccess(response.feed.entry));
     } catch (error) {

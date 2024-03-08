@@ -4,7 +4,7 @@ import {PodcastBanner} from "../../components/modules/common/podcast-banner/Podc
 import {Grid} from "@mui/material";
 import {EpisodesCounter} from "../../components/modules/detail-podcast/episodes-counter/EpisodesCounter";
 import {EpisodesList} from "../../components/modules/detail-podcast/episodes-list/EpisodesList";
-import {useDispatch, useSelector} from "../../redux/store";
+import {useDispatch} from "../../redux/store";
 import {useEffect} from "react";
 import {getPodcastDetail} from "../../redux/slices/podcast";
 import {usePodcastDetails} from "../../hooks/usePodcastDetails";
@@ -12,7 +12,6 @@ import {usePodcastDetails} from "../../hooks/usePodcastDetails";
 export const DetailPodcast = () => {
   const { podcastId } = useParams();
   const dispatch = useDispatch();
-  // const { podcast } = useSelector((state) => state.podcast);
   const { podcast } = usePodcastDetails({podcastId});
 
   useEffect(() => {
@@ -22,8 +21,6 @@ export const DetailPodcast = () => {
   if (!podcast) {
     return
   }
-
-  console.log('-> podcast', podcast)
 
   const podcastDetails = podcast.results[0];
   const episodes = podcast.results.slice(1);
