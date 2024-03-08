@@ -24,7 +24,7 @@ export const DetailPodcast = () => {
           <PodcastBanner {...podcastDetails}/>
         </Grid>
         <Grid item xs={8}>
-            <EpisodesCounter counter={podcast.resultCount}/>
+            <EpisodesCounter counter={podcastDetails.trackCount}/>
             <EpisodesList episodes={episodes}/>
         </Grid>
 
