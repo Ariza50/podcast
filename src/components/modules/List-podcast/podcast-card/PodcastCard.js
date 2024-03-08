@@ -1,6 +1,6 @@
 import {Avatar, Card, Grid, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
-import {trimLabel} from "./utils/format";
+import {trimLabel} from "../../../utils/format";
 
 export const PodcastCard = ({podcast}) => {
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ export const PodcastCard = ({podcast}) => {
   }
 
   return (
-    <Grid data-testid='cardLink' item sx={{ m: 2}} onClick={handleClick}>
+    <Grid data-testid='cardLink' item sx={{ m: 2, cursor: 'pointer' }} onClick={handleClick}>
       <Grid container sx={{ height: 220, width: 250, flexDirection: 'column', justifyContent: 'flex-end', position: 'relative' }} >
         <Avatar
           sx={{
